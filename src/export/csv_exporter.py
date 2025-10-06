@@ -40,14 +40,14 @@ class CSVExporter(LoggerMixin):
         "notes",
     ]
 
-    def __init__(self, config: Dict):
+    def __init__(self, config: Dict = None):
         """
         Initialize CSV exporter.
 
         Args:
-            config: Configuration dictionary
+            config: Configuration dictionary (optional, uses defaults if None)
         """
-        self.config = config
+        self.config = config or {}
 
     def export(self, jobs: List[Dict], output_dir: str) -> str:
         """

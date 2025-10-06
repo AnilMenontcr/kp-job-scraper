@@ -18,14 +18,14 @@ from .validator import DataValidator
 class DataProcessor(LoggerMixin):
     """Orchestrates data processing pipeline."""
 
-    def __init__(self, config: Dict):
+    def __init__(self, config: Dict = None):
         """
         Initialize data processor.
 
         Args:
-            config: Configuration dictionary
+            config: Configuration dictionary (optional, uses defaults if None)
         """
-        self.config = config
+        self.config = config or {}
         self.cleaner = DataCleaner()
         self.deduplicator = Deduplicator()
         self.validator = DataValidator()
