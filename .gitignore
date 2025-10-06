@@ -1,0 +1,161 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Configuration (contains sensitive settings)
+config.yaml
+
+# Data directories (scraped data should not be committed)
+data/raw/*
+data/processed/*
+data/output/*
+
+# Keep directory structure but ignore contents
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/output/.gitkeep
+
+# Logs
+logs/*
+*.log
+!logs/.gitkeep
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Documentation (exclude ALL development docs for clean deployment)
+docs/
+
+# Exclude ALL markdown files except essential ones
+*.md
+!README.md
+!PAID_SERVICES_GUIDE.md
+
+# Exclude test files and scripts
+test_*.py
+check_*.py
+compare_*.py
+analyze_*.py
+demo_*.py
+debug_*.py
+debug_*.html
+simple_*.py
+run_scraper.py
+merge_enriched_data.py
+setup.py
+
+# Jupyter Notebooks (if used for analysis)
+.ipynb_checkpoints/
+*.ipynb
+
+# Environment variables
+.env
+.env.local
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Temporary files
+*.tmp
+*.bak
+*.temp
+
+# Browser automation files
+driver_*.log
+chromedriver.log
+geckodriver.log
+*.png
+*.jpg
+*.jpeg
+*.gif
+
+# Railway deployment
+.railway/
+railway.log
+
+# Excel outputs (generated files)
+output/*.xlsx
+output/*.csv
+output/*.xls
+data/output_data/*.xlsx
+data/output_data/*.csv
+data/output_data/*.xls
+
+# Chrome/Chromium installers
+*.deb
+*.rpm
+google-chrome-stable*
+chromium-browser*
+
+# Session data
+session_data/
+cookies/
+cache/
+
+# Development databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Temporary browser profiles
+/tmp/chrome_profile/
+/tmp/undetected_chromedriver/
+
+# Development configuration files (keep only production configs)
+config.yaml
+config_dev.yaml
+config_test.yaml
+
+# Exclude sample/example files
+examples/
+samples/
+*_example.py
+*_sample.py
+
+# Exclude old/backup files
+*_old.py
+*_backup.py
+*_v1.py
+*_v2.py
+
+# Exclude Railway troubleshooting docs (keep in local only)
+RAILWAY_DEPLOYMENT_FIXES.md
+RAILWAY_README.md
+
+# NOTE: railway.toml and nixpacks.toml are REQUIRED for deployment - DO NOT exclude

@@ -1,0 +1,132 @@
+# Wellfound Job Scraper - Configuration File
+# Copy this file to config.yaml and customize as needed
+
+# Application metadata
+app:
+  name: "Wellfound Job Scraper"
+  version: "1.0.0"
+
+# Scraping configuration
+scraping:
+  # Target roles in priority order
+  target_roles:
+    - "Data Scientist"
+    - "Cybersecurity"
+    - "DevOps"
+    - "Data Engineer"
+  
+  # Geographic focus
+  location: "United States"
+  
+  # Optional: Specific states (leave empty for all US)
+  # states: ["CA", "TX", "NY"]
+  
+  # Batch size target (number of unique companies)
+  max_companies: 100
+  
+  # Maximum pages to scrape per role
+  max_pages_per_role: 10
+  
+  # Wellfound base URL
+  base_url: "https://wellfound.com"
+
+# Rate limiting configuration
+rate_limiting:
+  # Maximum requests per hour (recommended: 50)
+  max_requests_per_hour: 50
+  
+  # Random delay range between requests (seconds)
+  min_delay_seconds: 3
+  max_delay_seconds: 8
+  
+  # Retry configuration for failed requests
+  retry_attempts: 3
+  retry_backoff_base: 2  # Exponential backoff: 2^attempt seconds
+  
+  # User agent rotation enabled
+  user_agent_rotation: true
+  
+  # Request timeout (seconds)
+  timeout_seconds: 15
+
+# Filtering criteria (used for manual validation guidance)
+filters:
+  # Revenue range in millions USD
+  revenue_min_millions: 5
+  revenue_max_millions: 500
+  
+  # Company size (employee count)
+  company_size_min: 10
+  company_size_max: 500
+  
+  # Target funding stages
+  funding_stages:
+    - "Seed"
+    - "Series A"
+    - "Series B"
+    - "Series C"
+
+# Output configuration
+output:
+  # Output format (currently only 'csv' supported)
+  format: "csv"
+  
+  # Output directory
+  directory: "./data/output"
+  
+  # Include timestamp in filename
+  include_timestamp: true
+  
+  # CSV settings
+  csv:
+    delimiter: ","
+    quotechar: '"'
+    encoding: "utf-8-sig"  # UTF-8 with BOM for Excel compatibility
+    line_terminator: "\r\n"  # Windows line endings
+
+# Logging configuration
+logging:
+  # Log level: DEBUG, INFO, WARNING, ERROR, CRITICAL
+  level: "INFO"
+  
+  # Log directory
+  directory: "./logs"
+  
+  # Log to console as well as file
+  console_output: true
+  
+  # Log file rotation
+  max_file_size_mb: 10
+  backup_count: 5
+  
+  # Log format
+  format: "[%(asctime)s] [%(levelname)s] [%(name)s] %(message)s"
+  date_format: "%Y-%m-%d %H:%M:%S"
+
+# Data storage directories
+data:
+  raw_dir: "./data/raw"
+  processed_dir: "./data/processed"
+  output_dir: "./data/output"
+
+# Data processing options
+processing:
+  # Remove duplicate jobs (same company + job title)
+  deduplicate: true
+  
+  # Minimum data quality score to include (0.0-1.0)
+  min_quality_score: 0.0
+  
+  # Normalize company names (remove Inc., LLC, etc.)
+  normalize_company_names: true
+
+# Enrichment configuration
+enrichment:
+  # Generate enrichment template CSV
+  generate_template: true
+  
+  # Crunchbase base URL for search
+  crunchbase_search_url: "https://www.crunchbase.com/discover/organization.companies"
+  
+  # Include Crunchbase search URLs in template
+  include_search_urls: true

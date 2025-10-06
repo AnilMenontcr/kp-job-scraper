@@ -1,0 +1,15 @@
+[build]
+builder = "NIXPACKS"
+
+[deploy]
+# Railway will use the start command from nixpacks.toml by default
+# This section is for Railway-specific settings
+startCommand = "python -c \"import os; from web_app import app; app.run(debug=False, host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))\""
+healthcheckPath = "/"
+healthcheckTimeout = 30
+restartPolicyType = "ON_FAILURE"
+
+[env]
+# Default environment variables for Railway
+PYTHONUNBUFFERED = "1"
+FLASK_ENV = "production"
