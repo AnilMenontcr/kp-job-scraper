@@ -32,8 +32,9 @@ aptPkgs = [
 
 [phases.install]
 cmds = [
-    "curl -sS https://bootstrap.pypa.io/get-pip.py | python3 --break-system-packages",
-    "pip --break-system-packages install -r requirements.txt"
+    "python3 -m pip --version",
+    "python3 -m pip install --upgrade pip",
+    "python3 -m pip install -r requirements.txt"
 ]
 
 [start]
