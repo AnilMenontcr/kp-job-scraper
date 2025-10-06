@@ -32,9 +32,10 @@ aptPkgs = [
 
 [phases.install]
 cmds = [
-    "pip install -r requirements.txt"
+    "python3 -m pip install --upgrade pip",
+    "python3 -m pip install -r requirements.txt"
 ]
 
 [start]
 # Handle PORT dynamically in Python (Railway standard)
-cmd = "python -c \"import os; from web_app import app; app.run(debug=False, host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))\""
+cmd = "python3 -c \"import os; from web_app import app; app.run(debug=False, host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))\""
