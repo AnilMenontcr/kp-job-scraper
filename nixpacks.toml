@@ -30,12 +30,8 @@ aptPkgs = [
     "libxrandr2"
 ]
 
-[phases.install]
-cmds = [
-    "python3 -m pip --version",
-    "python3 -m pip install --upgrade pip",
-    "python3 -m pip install -r requirements.txt"
-]
+# Let nixpacks auto-detect and handle Python package installation
+# nixpacks will automatically run pip install -r requirements.txt
 
 [start]
 # Handle PORT dynamically in Python (Railway standard)
