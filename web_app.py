@@ -18,15 +18,20 @@ from src.scraper.jobspy_scraper import JobSpyScraper
 from src.processor.data_processor import DataProcessor
 from src.export.csv_exporter import CSVExporter
 from src.enrichment import IndeedCompanyEnricher
-from src.utils.config import Config
 
 app = Flask(__name__)
 
 # Store job status
 job_status = {}
 
-# Configuration
-config = Config()
+# Configuration - optional, will use defaults if config.yaml not found
+try:
+    from src.utils.config import Config
+    config = Config()
+    print("Loaded config from config.yaml")
+except FileNotFoundError:
+    print("No config.yaml found, using default configuration")
+    config = None
 
 
 @app.route('/')
@@ -162,7 +167,7 @@ def run_scrape_job(job_id, job_role, location, job_board, max_companies, enrich)
         
         # Process data
         job_status[job_id]['message'] = 'Processing and cleaning data...'
-        processor = DataProcessor(config.processing)
+        processor = DataProcessor(config.processing if config else None)
         processed_jobs = processor.process(raw_jobs)
         
         job_status[job_id]['progress'] = 60
@@ -281,8 +286,8 @@ def run_scrape_job(job_id, job_role, location, job_board, max_companies, enrich)
         
         # Export to CSV
         job_status[job_id]['message'] = 'Exporting results...'
-        exporter = CSVExporter(config.output)
-        output_file = exporter.export(processed_jobs, 'data/output')
+        exporter = CSVExporter(config.output if config else None)
+        output_file = exporter.export(processed_jobs, 'output')
         
         # Update status
         job_status[job_id]['status'] = 'completed'
